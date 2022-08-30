@@ -21,7 +21,7 @@ import lombok.ToString;
 @ToString
 @EntityListeners(AuditingEntityListener.class)
 @MappedSuperclass
-public class AuditionFields {
+public abstract class AuditionFields {
 
     @DateTimeFormat(iso = ISO.DATE_TIME)
     @CreatedDate 
