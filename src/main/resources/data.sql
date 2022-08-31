@@ -4,7 +4,7 @@ insert into user_account (user_id, user_password, nickname, email, memo, created
 ('dhlee', '{noop}asdf1234', 'dhlee', 'dhlee@mail.com', 'I am dhlee.', now(), 'dhlee', now(), 'dhlee')
 ;
 insert into user_account (user_id, user_password, nickname, email, memo, created_at, created_by, modified_at, modified_by) values
-('dhlee2', '{noop}asdf1234', 'dhlee', 'dhlee2@mail.com', 'I am dhlee.', now(), 'dhlee2', now(), 'dhlee2')
+('dhlee2', '{noop}asdf1234', 'dhlee2', 'dhlee2@mail.com', 'I am dhlee.', now(), 'dhlee2', now(), 'dhlee2')
 ;
 
 -- 123 게시글

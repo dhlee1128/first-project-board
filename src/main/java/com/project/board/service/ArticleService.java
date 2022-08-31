@@ -46,9 +46,12 @@ public class ArticleService {
             case HASHTAG : 
                 result = articleRepository.findByHashtag("#" + searchKeyword, pageable).map(ArticleDto::from); 
                 break;
+            default: 
+                result = null;
+                break;
         };
 
-        return Page.empty();
+        return result;
     }
 
     @Transactional(readOnly = true)
