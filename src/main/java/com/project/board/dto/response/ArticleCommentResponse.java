@@ -1,4 +1,4 @@
-package com.project.board.response;
+package com.project.board.dto.response;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
