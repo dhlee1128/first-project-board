@@ -1,5 +1,7 @@
 package com.project.board.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.querydsl.binding.QuerydslBinderCustomizer;
@@ -26,4 +28,7 @@ public interface ArticleCommentRepository extends
         bindings.bind(root.createdAt).first(DateTimeExpression::eq); // like '%s{v}%'
         bindings.bind(root.createdBy).first(StringExpression::containsIgnoreCase); // like '%s{v}%'
     }
+
+    List<ArticleComment> findByArticle_Id(Long articleId);
+    
 }
