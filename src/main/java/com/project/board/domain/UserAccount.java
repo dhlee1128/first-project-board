@@ -10,7 +10,6 @@ import java.util.Objects;
 @Getter
 @ToString
 @Table(indexes = {
-        @Index(columnList = "userId"),
         @Index(columnList = "email", unique = true),
         @Index(columnList = "createdAt"),
         @Index(columnList = "createdBy")
@@ -18,10 +17,9 @@ import java.util.Objects;
 @Entity
 public class UserAccount extends AuditionFields {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(length = 50)
+    private String userId;
 
-    @Setter @Column(nullable = false, length = 50) private String userId;
     @Setter @Column(nullable = false) private String userPassword;
 
     @Setter @Column(length = 100) private String email;
@@ -51,12 +49,12 @@ public class UserAccount extends AuditionFields {
             return false;
         }
         UserAccount userAccount = (UserAccount) o;
-        return id != null && Objects.equals(id, userAccount.id);
+        return userId != null && Objects.equals(userId, userAccount.userId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(userId);
     }
 
 }

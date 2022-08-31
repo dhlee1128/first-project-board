@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 import com.project.board.domain.UserAccount;
 
 public class UserAccountDto {
-    private Long id;
     private String userId;
     private String userPassword;
     private String email;
@@ -16,14 +15,6 @@ public class UserAccountDto {
     private LocalDateTime modifiedAt;
     private String modifiedBy;
 
-
-    public Long getId() {
-        return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getUserId() {
         return this.userId;
@@ -98,8 +89,7 @@ public class UserAccountDto {
     }
 
 
-    public UserAccountDto(Long id, String userId, String userPassword, String email, String nickname, String memo, LocalDateTime createdAt, String createdBy, LocalDateTime modifiedAt, String modifiedBy) {
-        this.id = id;
+    public UserAccountDto(String userId, String userPassword, String email, String nickname, String memo, LocalDateTime createdAt, String createdBy, LocalDateTime modifiedAt, String modifiedBy) {
         this.userId = userId;
         this.userPassword = userPassword;
         this.email = email;
@@ -112,13 +102,13 @@ public class UserAccountDto {
     }
 
 
-    public static UserAccountDto of(Long id, String userId, String userPassword, String email, String nickname, String memo, LocalDateTime createdAt, String createdBy, LocalDateTime modifiedAt, String modifiedBy) {
-        return new UserAccountDto(id, userId, userPassword, email, nickname, memo, createdAt, createdBy, modifiedAt, modifiedBy);
+    public static UserAccountDto of(String userId, String userPassword, String email, String nickname, String memo, LocalDateTime createdAt, String createdBy, LocalDateTime modifiedAt, String modifiedBy) {
+        return new UserAccountDto(userId, userPassword, email, nickname, memo, createdAt, createdBy, modifiedAt, modifiedBy);
     }
 
     public static UserAccountDto from(UserAccount entity) {
         return new UserAccountDto(
-            entity.getId(),
+            // entity.getId(),
             entity.getUserId(),
             entity.getUserPassword(),
             entity.getEmail(),
