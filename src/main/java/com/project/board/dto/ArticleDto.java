@@ -124,9 +124,9 @@ public class ArticleDto{
         );
     }
 
-    public Article toEntity(UserAccount userAccount) {
+    public Article toEntity() {
         return Article.of(
-                userAccount,
+                userAccountDto.toEntity(),
                 title,
                 content,
                 hashtag
