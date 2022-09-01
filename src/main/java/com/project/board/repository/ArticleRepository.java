@@ -10,12 +10,14 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import com.project.board.domain.Article;
 import com.project.board.domain.QArticle;
+import com.project.board.repository.querydsl.ArticleRepositoryCustom;
 import com.querydsl.core.types.dsl.DateTimeExpression;
 import com.querydsl.core.types.dsl.StringExpression;
 
 @RepositoryRestResource
 public interface ArticleRepository extends
         JpaRepository<Article, Long>,
+        ArticleRepositoryCustom,
         QuerydslPredicateExecutor<Article>,
         QuerydslBinderCustomizer<QArticle> {
 
