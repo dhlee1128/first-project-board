@@ -3,19 +3,24 @@ package com.project.board.repository;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.context.TestConfiguration;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
+import org.springframework.data.domain.AuditorAware;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import com.project.board.config.JpaConfig;
 import com.project.board.domain.Article;
 import com.project.board.domain.UserAccount;
 
 @DisplayName("JPA 연결 테스트")
-@Import(JpaConfig.class)
+@Import(JpaRepositoryTest.TestJpaConfig.class)
 @DataJpaTest
 public class JpaRepositoryTest {
 
@@ -90,6 +95,16 @@ public class JpaRepositoryTest {
         // then
         assertThat(articleRepository.count()).isEqualTo(previousArticleCount-1);
         assertThat(articleCommentRepository.count()).isEqualTo(previousArticleCommentCount-deletedCommentsSize);
+    }
+
+    @EnableJpaAuditing
+    @TestConfiguration
+
+    public static class TestJpaConfig {
+        @Bean
+        public AuditorAware<String> auditorAware() {
+            return () -> Optional.of("dhlee");
+        }
     }
 
 }
