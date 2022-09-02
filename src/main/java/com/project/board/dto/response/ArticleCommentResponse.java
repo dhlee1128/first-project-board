@@ -12,6 +12,7 @@ public class ArticleCommentResponse implements Serializable{
     private LocalDateTime createdAt;
     private String email;
     private String nickname;
+    private String userId;
 
 
     public Long getId() {
@@ -54,17 +55,26 @@ public class ArticleCommentResponse implements Serializable{
         this.nickname = nickname;
     }
 
+    public String getUserId() {
+        return this.userId;
+    }
 
-    public ArticleCommentResponse(Long id, String content, LocalDateTime createdAt, String email, String nickname) {
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+
+    public ArticleCommentResponse(Long id, String content, LocalDateTime createdAt, String email, String nickname, String userId) {
         this.id = id;
         this.content = content;
         this.createdAt = createdAt;
         this.email = email;
         this.nickname = nickname;
+        this.userId = userId;
     }
 
-    public static ArticleCommentResponse of(Long id, String content, LocalDateTime createdAt, String email, String nickname) {
-        return new ArticleCommentResponse(id, content, createdAt, email, nickname);
+    public static ArticleCommentResponse of(Long id, String content, LocalDateTime createdAt, String email, String nickname, String userId) {
+        return new ArticleCommentResponse(id, content, createdAt, email, nickname, userId);
     }
 
     public static ArticleCommentResponse from(ArticleCommentDto dto) {
@@ -78,7 +88,8 @@ public class ArticleCommentResponse implements Serializable{
                 dto.getContent(),
                 dto.getCreatedAt(),
                 dto.getUserAccountDto().getEmail(),
-                nickname
+                nickname,
+                dto.getUserAccountDto().getUserId()
         );
     }
 
