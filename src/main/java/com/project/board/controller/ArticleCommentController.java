@@ -1,5 +1,6 @@
 package com.project.board.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,9 +21,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class ArticleCommentController {
     
+    @Autowired
     private final ArticleCommentService articleCommentService;
 
-    @PostMapping(value="/new")
+    @PostMapping("/new")
     public String postNewArticleComment(
             @AuthenticationPrincipal BoardPrincipal boardPrincipal,
             ArticleCommentRequest articleCommentRequest
@@ -32,11 +34,12 @@ public class ArticleCommentController {
         return "redirect:/articles/" + articleCommentRequest.getArticleId();
     }
 
-    @PostMapping ("/{commentId}/delete")
+    @PostMapping("/{commentId}/delete")
     public String deleteArticleComment(
-            @PathVariable Long commentId, 
+            @PathVariable Long commentId,
             @AuthenticationPrincipal BoardPrincipal boardPrincipal,
-            Long articleId) {
+            Long articleId
+    ) {
         articleCommentService.deleteArticleComment(commentId, boardPrincipal.getUsername());
 
         return "redirect:/articles/" + articleId;

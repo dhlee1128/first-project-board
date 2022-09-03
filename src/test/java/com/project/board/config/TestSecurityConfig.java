@@ -14,12 +14,12 @@ import com.project.board.repository.UserAccountRepository;
 @Import(SecurityConfig.class)
 public class TestSecurityConfig {
     
-    @MockBean private UserAccountRepository usweAccountRepository;
+    @MockBean private UserAccountRepository userAccountRepository;
 
     @BeforeTestMethod
     public void securitySetup() {
 
-        given(usweAccountRepository.findById(anyString())).willReturn(Optional.of(UserAccount.of(
+        given(userAccountRepository.findById(anyString())).willReturn(Optional.of(UserAccount.of(
                 "dhtest",
                 "pw",
                 "dh-test@email.com",

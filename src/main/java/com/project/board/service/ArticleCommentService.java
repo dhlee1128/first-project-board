@@ -25,8 +25,8 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class ArticleCommentService {
 
-    private final ArticleCommentRepository articleCommentRepository;
     private final ArticleRepository articleRepository;
+    private final ArticleCommentRepository articleCommentRepository;
     private final UserAccountRepository userAccountRepository;
 
     @Transactional(readOnly = true)
@@ -43,7 +43,7 @@ public class ArticleCommentService {
             UserAccount userAccount = userAccountRepository.getReferenceById(dto.getUserAccountDto().getUserId());
             articleCommentRepository.save(dto.toEntity(article, userAccount));
         } catch (EntityNotFoundException e) {
-            log.warn("댓글 저장 실패. 댓글 작성에 필요한 정보를 찾을 수 없습니다. - {}", dto);
+            log.warn("댓글 저장 실패. 댓글 작성에 필요한 정보를 찾을 수 없습니다 - {}", e.getLocalizedMessage());
         }
     }
 

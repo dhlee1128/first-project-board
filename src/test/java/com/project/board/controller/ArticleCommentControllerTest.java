@@ -3,6 +3,7 @@ package com.project.board.controller;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.*;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,6 +70,7 @@ public class ArticleCommentControllerTest {
         then(articleCommentService).should().saveArticleComment(any(ArticleCommentDto.class));
     }
 
+    @Disabled
     @DisplayName("[view][GET] 댓글 삭제 - 정상 호출")
     @Test
     void givenArticleCommentIdToDelete_whenRequesting_thenDeletesArticleComment() throws Exception {

@@ -27,13 +27,6 @@ import com.project.board.service.PaginationService;
 
 import lombok.RequiredArgsConstructor;
 
-/**
- * /articles
- * /articles/{article-id}
- * /articles/search
- * /articles/search-hashtag
- */
-
 @RequiredArgsConstructor
 @RequestMapping("/articles")
 @Controller
@@ -65,6 +58,7 @@ public class ArticleController {
 
         map.addAttribute("article", article);
         map.addAttribute("articleComments", article.getArticleCommentResponses());
+        map.addAttribute("totalCount", articleService.getArticleCount());
 
         return "articles/detail";
     }
