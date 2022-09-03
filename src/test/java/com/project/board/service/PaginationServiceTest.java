@@ -15,14 +15,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 
 @DisplayName("비즈니스 로직 - 페이지네이션")
-@SpringBootTest(webEnvironment = WebEnvironment.NONE, classes = Void.class)
-public class PaginationServiceTest {
+@SpringBootTest(webEnvironment = WebEnvironment.NONE, classes = PaginationService.class)
+class PaginationServiceTest {
 
     private final PaginationService sut;
 
-    // @Autowired PaginationService sut;
-
-    public PaginationServiceTest(@Autowired PaginationService paginationService) {
+    PaginationServiceTest(@Autowired PaginationService paginationService) {
         this.sut = paginationService;
     }
 

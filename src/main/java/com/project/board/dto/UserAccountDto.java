@@ -112,7 +112,6 @@ public class UserAccountDto {
 
     public static UserAccountDto from(UserAccount entity) {
         return new UserAccountDto(
-            // entity.getId(),
             entity.getUserId(),
             entity.getUserPassword(),
             entity.getEmail(),

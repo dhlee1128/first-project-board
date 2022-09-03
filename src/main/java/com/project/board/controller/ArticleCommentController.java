@@ -1,10 +1,13 @@
 package com.project.board.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.project.board.dto.UserAccountDto;
 import com.project.board.dto.request.ArticleCommentRequest;
+import com.project.board.dto.security.BoardPrincipal;
 import com.project.board.service.ArticleCommentService;
 
 import lombok.RequiredArgsConstructor;
@@ -18,21 +21,26 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class ArticleCommentController {
     
+    @Autowired
     private final ArticleCommentService articleCommentService;
 
-    @PostMapping(value="/new")
-    public String postNewArticleComment(ArticleCommentRequest articleCommentRequest) {
-        //TODO: 인증 정보를 넣어줘야 한다.
-        articleCommentService.saveArticleComment(articleCommentRequest.toDto(UserAccountDto.of(
-            "dhlee", "pw", "dhlee@mail.com", null, null
-        )));
+    @PostMapping("/new")
+    public String postNewArticleComment(
+            @AuthenticationPrincipal BoardPrincipal boardPrincipal,
+            ArticleCommentRequest articleCommentRequest
+    ) {
+        articleCommentService.saveArticleComment(articleCommentRequest.toDto(boardPrincipal.toDto()));
 
         return "redirect:/articles/" + articleCommentRequest.getArticleId();
     }
 
-    @PostMapping ("/{commentId}/delete")
-    public String deleteArticleComment(@PathVariable Long commentId, Long articleId) {
-        articleCommentService.deleteArticleComment(commentId);
+    @PostMapping("/{commentId}/delete")
+    public String deleteArticleComment(
+            @PathVariable Long commentId,
+            @AuthenticationPrincipal BoardPrincipal boardPrincipal,
+            Long articleId
+    ) {
+        articleCommentService.deleteArticleComment(commentId, boardPrincipal.getUsername());
 
         return "redirect:/articles/" + articleId;
     }
