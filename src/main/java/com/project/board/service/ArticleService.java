@@ -83,7 +83,7 @@ public class ArticleService {
             Article article = articleRepository.getReferenceById(articleId);
             UserAccount userAccount = userAccountRepository.getReferenceById(dto.getUserAccountDto().getUserId());
 
-            if (article.getUserAccount().equals(userAccount)) {
+            if (article.getUserAccount()==userAccount) {
                 if (dto.getTitle() != null && !dto.getTitle().isEmpty()) { article.setTitle(dto.getTitle()); }
                 if (dto.getContent() != null && !dto.getContent().isEmpty()) { article.setContent(dto.getContent()); }
                 article.setHashtag(dto.getHashtag());
