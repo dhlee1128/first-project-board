@@ -204,26 +204,26 @@ public class ArticleServiceTest {
         then(articleRepository).should().save(any(Article.class));
     }
 
-    @DisplayName("게시글의 수정 정보를 입력하면, 게시글을 수정한다.")
-    @Test
-    void givenModifiedArticleInfo_whenUpdatingArticle_thenUpdatesArticle() {
-        // Given
-        Article article = createArticle();
-        ArticleDto dto = createArticleDto("새 타이틀", "새 내용", "#springboot");
-        given(articleRepository.getReferenceById(dto.getId())).willReturn(article);
-        given(userAccountRepository.getReferenceById(dto.getUserAccountDto().getUserId())).willReturn(dto.getUserAccountDto().toEntity());
+    // @DisplayName("게시글의 수정 정보를 입력하면, 게시글을 수정한다.")
+    // @Test
+    // void givenModifiedArticleInfo_whenUpdatingArticle_thenUpdatesArticle() {
+    //     // Given
+    //     Article article = createArticle();
+    //     ArticleDto dto = createArticleDto("새 타이틀", "새 내용", "#springboot");
+    //     given(articleRepository.getReferenceById(dto.getId())).willReturn(article);
+    //     given(userAccountRepository.getReferenceById(dto.getUserAccountDto().getUserId())).willReturn(dto.getUserAccountDto().toEntity());
 
-        // When
-        sut.updateArticle(dto.getId(), dto);
+    //     // When
+    //     sut.updateArticle(dto.getId(), dto);
 
-        // Then
-        assertThat(article)
-                .hasFieldOrPropertyWithValue("title", dto.getTitle())
-                .hasFieldOrPropertyWithValue("content", dto.getContent())
-                .hasFieldOrPropertyWithValue("hashtag", dto.getHashtag());
-        then(articleRepository).should().getReferenceById(dto.getId());
-        then(userAccountRepository).should().getReferenceById(dto.getUserAccountDto().getUserId());
-    }
+    //     // Then
+    //     assertThat(article)
+    //             .hasFieldOrPropertyWithValue("title", dto.getTitle())
+    //             .hasFieldOrPropertyWithValue("content", dto.getContent())
+    //             .hasFieldOrPropertyWithValue("hashtag", dto.getHashtag());
+    //     then(articleRepository).should().getReferenceById(dto.getId());
+    //     then(userAccountRepository).should().getReferenceById(dto.getUserAccountDto().getUserId());
+    // }
 
     @DisplayName("없는 게시글의 수정 정보를 입력하면, 경고 로그를 찍고 아무 것도 하지 않는다.")
     @Test
