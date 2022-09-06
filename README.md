@@ -27,3 +27,6 @@ Spring Boot
 * QueryDSL 5.0.0
 * Bootstrap 5.2.0-Beta1
 * Heroku
+
+## 배포
+* https://project-board-dh.herokuapp.com/
